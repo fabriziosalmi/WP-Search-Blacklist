@@ -12,23 +12,23 @@ Author URI: https://github.com/fabriziosalmi
 License: GPL
 */
 
-add_action( 'admin_menu', 'my_plugin_menu' );
+add_action( 'admin_menu', 'searchblacklist_menu' );
 
-function my_plugin_menu() {
-	add_options_page( 'Search Blacklist settings', 'Search Blacklist', 'manage_options', 'wp-search-blacklist', 'my_plugin_options' );
+function searchblacklist_menu() {
+	add_options_page( 'Search Blacklist settings', 'Search Blacklist', 'manage_options', 'wp-search-blacklist', 'searchblacklist_options' );
 }
 
-function your_plugin_settings_link($links) { 
+function searchblacklist_settings_link($links) { 
   $settings_link = '<a href="options-general.php?page=wp-search-blacklist.php">Settings</a>'; 
   array_unshift($links, $settings_link); 
   return $links; 
 }
  
 $plugin = plugin_basename(__FILE__); 
-add_filter("plugin_action_links_$plugin", 'your_plugin_settings_link' );
+add_filter("plugin_action_links_$plugin", 'searchblacklist_settings_link' );
 
 /** Step 3. */
-function my_plugin_options() {
+function searchblacklist_options() {
 	if ( !current_user_can( 'manage_options' ) )  {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	}
